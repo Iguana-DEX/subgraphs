@@ -1,0 +1,15 @@
+{
+  "name": "blocks",
+  "description": "Blocks Subgraph",
+  "version": "1.0.0",
+  "repository": "git@github.com:iguana-dex/subgraphs.git",
+  "author": "Styliann",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "codegen": "graph codegen subgraph.yaml",
+    "build": "graph build subgraph.yaml",
+    "deploy": "graph deploy --product hosted-service --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ pancakeswap/blocks subgraph.yaml",
+    "deploy:opbnb": "graph deploy --node https://open-platform-ap.nodereal.io/$API_KEY/opbnb-mainnet-graph-indexer/ --ipfs https://api.thegraph.com/ipfs/ pancakeswap/blocks",
+    "deploy:etherlink-testnet": "graph deploy --studio blocks-etherlink-testnet"
+  }
+}
