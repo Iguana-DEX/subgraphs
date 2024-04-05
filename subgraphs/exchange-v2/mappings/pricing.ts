@@ -4,16 +4,19 @@ import { Bundle, Pair, Token } from "../generated/schema";
 import { ADDRESS_ZERO, factoryContract, ONE_BD, ZERO_BD } from "./utils";
 
 // prettier-ignore
-let WETH_ADDRESS = "0x82af49447d8a07e3bd95bd0d56f35241523fbab1";
+let WETH_ADDRESS = "0xB1Ea698633d57705e93b0E40c1077d46CD6A51d8";
 // prettier-ignore
-let WETH_USDT_PAIR = "0xa59bd260f9707ea44551c510f714ccd482ec75d8";
+let WETH_USDT_PAIR = "0x0000000000000000000000000000000000000000";
 // prettier-ignore
 let WETH_USDC_PAIR = "0x0000000000000000000000000000000000000000";
+// prettier-ignore
+let WETH_EUSD_PAIR = "0x9ab92635d4d949069023e7c541e5a272a0f07da1";
 
 export function getETHPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
   let usdcPair = Pair.load(WETH_USDC_PAIR); // usdc is token0
   let usdtPair = Pair.load(WETH_USDT_PAIR); // usdt is token1
+  let eusdPair = Pair.load(WETH_EUSD_PAIR); // usdt is token1
 
   if (usdcPair !== null && usdtPair !== null) {
     let totalLiquidityBNB = usdtPair.reserve0.plus(usdcPair.reserve1);
@@ -28,14 +31,25 @@ export function getETHPriceInUSD(): BigDecimal {
     return usdtPair.token1Price;
   } else if (usdcPair !== null) {
     return usdcPair.token0Price;
+  } else if (eusdPair !== null) {
+    // Added by Styliann for Etherlink
+    return eusdPair.token0Price;
   } else {
     return ZERO_BD;
   }
 }
 
-// token where amounts should contribute to tracked volume and liquidity
+// Tokens whose amounts should contribute to tracked volume and liquidity
 // prettier-ignore
-let WHITELIST: string[] = "0x82af49447d8a07e3bd95bd0d56f35241523fbab1,0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9,0xaf88d065e77c8cc2239327c5edb3a432268e5831,0xff970a61a04b1ca14834a43f5de4533ebddb5cc8,0x912ce59144191c1204e64559fe8253a0e49e6548,0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f,0xda10009cbd5d07dd0cecc66161fc93d7c9000da1".split(",");
+let WHITELIST: string[] = [
+  "0xB1Ea698633d57705e93b0E40c1077d46CD6A51d8", // WXTZ
+  "0x1A71f491fb0Ef77F13F8f6d2a927dd4C969ECe4f", // eUSD
+  "0xD21B917D2f4a4a8E3D12892160BFFd8f4cd72d4F", // USDT
+  "0xa7c9092A5D2C3663B7C5F714dbA806d02d62B58a", // USDC
+  "0x8DEF68408Bc96553003094180E5C90d9fe5b88C1", // WETH
+  "0x6bDE94725379334b469449f4CF49bCfc85ebFb27", // tzBTC
+  "0xBeEfb119631691a1e0D9378fA7864fC6E67A72Ad", // IGN
+];
 
 // minimum liquidity for price to get tracked
 let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString("0");

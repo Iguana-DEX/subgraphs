@@ -7,7 +7,7 @@
   "license": "GPL-3.0-or-later",
   "scripts": {
     "template": "mustache ../../config/$NETWORK.js subgraph.template.yaml > subgraph.yaml && mustache ../../config/$NETWORK.js mappings/utils/index.template.ts > mappings/utils/index.ts && mustache ../../config/$NETWORK.js mappings/pricing.template.ts > mappings/pricing.ts",
-    "auth": "graph auth --product hosted-service SUBGRAPH_ACCESS_TOKEN",
+    "auth": "graph auth --studio 4c465f—21f38d",
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
     "deploy": "graph deploy --product hosted-service pancakeswap/exhange-eth",

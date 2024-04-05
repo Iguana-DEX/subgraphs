@@ -9,11 +9,14 @@ let WETH_ADDRESS = "{{ wNativeAddress }}";
 let WETH_USDT_PAIR = "{{ v2.wNativeStablePair1 }}";
 // prettier-ignore
 let WETH_USDC_PAIR = "{{ v2.wNativeStablePair0 }}";
+// prettier-ignore
+let WETH_EUSD_PAIR = "{{ v2.wNativeStablePair2 }}";
 
 export function getETHPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
   let usdcPair = Pair.load(WETH_USDC_PAIR); // usdc is token0
   let usdtPair = Pair.load(WETH_USDT_PAIR); // usdt is token1
+  let eusdPair = Pair.load(WETH_EUSD_PAIR); // eusd is token1
 
   if (usdcPair !== null && usdtPair !== null) {
     let totalLiquidityBNB = usdtPair.reserve0.plus(usdcPair.reserve1);
@@ -28,6 +31,8 @@ export function getETHPriceInUSD(): BigDecimal {
     return usdtPair.token1Price;
   } else if (usdcPair !== null) {
     return usdcPair.token0Price;
+  } else if (eusdPair !== null) {
+    return eusdPair.token0Price;
   } else {
     return ZERO_BD;
   }
