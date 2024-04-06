@@ -33,6 +33,7 @@ The APIs created with The Graph are referred to as 'subgraphs' and IguanaDEX use
    - Scroll https://api.studio.thegraph.com/query/45376/exchange-v2-scroll/version/latest
    - Scroll Sepolia https://api.studio.thegraph.com/query/45376/exchange-v2-scroll-sepolia/version/latest
    - opBNB https://opbnb-mainnet-graph.nodereal.io/subgraphs/name/pancakeswap/exchange-v2
+   - Etherlink Testnet https://api.studio.thegraph.com/query/69431/exchange-v2-etherlink-testnet/version/latest
 
 3. **[Farm Auctions](https://thegraph.com/legacy-explorer/subgraph/pancakeswap/farm-auctions)**: Tracks all PancakeSwap Farm Auctions with auctions and bids.
 

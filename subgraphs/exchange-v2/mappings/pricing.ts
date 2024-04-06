@@ -6,33 +6,40 @@ import { ADDRESS_ZERO, factoryContract, ONE_BD, ZERO_BD } from "./utils";
 // prettier-ignore
 let WETH_ADDRESS = "0xB1Ea698633d57705e93b0E40c1077d46CD6A51d8";
 // prettier-ignore
+let WETH_EUSD_PAIR = "0x9ab92635d4d949069023e7c541e5a272a0f07da1";
+// prettier-ignore
 let WETH_USDT_PAIR = "0x0000000000000000000000000000000000000000";
 // prettier-ignore
 let WETH_USDC_PAIR = "0x0000000000000000000000000000000000000000";
-// prettier-ignore
-let WETH_EUSD_PAIR = "0x9ab92635d4d949069023e7c541e5a272a0f07da1";
 
 export function getETHPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
+  let eusdPair = Pair.load(WETH_EUSD_PAIR); // eusd is token0
   let usdcPair = Pair.load(WETH_USDC_PAIR); // usdc is token0
   let usdtPair = Pair.load(WETH_USDT_PAIR); // usdt is token1
-  let eusdPair = Pair.load(WETH_EUSD_PAIR); // usdt is token1
 
-  if (usdcPair !== null && usdtPair !== null) {
-    let totalLiquidityBNB = usdtPair.reserve0.plus(usdcPair.reserve1);
+  // all 3 pairs have been created
+  if (eusdPair !== null && usdcPair !== null && usdtPair !== null) {
+    let totalLiquidityBNB = eusdPair.reserve1.plus(usdcPair.reserve1).plus(usdtPair.reserve0);
     if (totalLiquidityBNB.notEqual(ZERO_BD)) {
+      let eusdWeight = eusdPair.reserve1.div(totalLiquidityBNB);
       let usdtWeight = usdtPair.reserve0.div(totalLiquidityBNB);
       let usdcWeight = usdcPair.reserve1.div(totalLiquidityBNB);
-      return usdtPair.token1Price.times(usdtWeight).plus(usdcPair.token0Price.times(usdcWeight));
+      return eusdPair.token0Price
+        .times(eusdWeight)
+        .plus(usdcPair.token0Price.times(usdcWeight))
+        .plus(usdtPair.token1Price.times(usdtWeight));
+      // eUSD and USDC have been created
     } else {
       return ZERO_BD;
     }
-  } else if (usdtPair !== null) {
-    return usdtPair.token1Price;
-  } else if (usdcPair !== null) {
-    return usdcPair.token0Price;
+  } else if (eusdPair !== null && usdcPair !== null) {
+    let totalLiquidityETH = eusdPair.reserve1.plus(usdcPair.reserve1);
+    let eusdWeight = eusdPair.reserve1.div(totalLiquidityETH);
+    let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH);
+    return eusdPair.token0Price.times(eusdWeight).plus(usdcPair.token0Price.times(usdcWeight));
+    // eUSD is the only pair created so far
   } else if (eusdPair !== null) {
-    // Added by Styliann for Etherlink
     return eusdPair.token0Price;
   } else {
     return ZERO_BD;
