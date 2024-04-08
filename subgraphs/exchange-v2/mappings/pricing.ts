@@ -6,7 +6,7 @@ import { ADDRESS_ZERO, factoryContract, ONE_BD, ZERO_BD } from "./utils";
 // prettier-ignore
 let WETH_ADDRESS = "0xB1Ea698633d57705e93b0E40c1077d46CD6A51d8";
 // prettier-ignore
-let WETH_EUSD_PAIR = "0x9ab92635d4d949069023e7c541e5a272a0f07da1";
+let WETH_EUSD_PAIR = "0x9aB92635D4D949069023e7C541e5A272A0F07Da1";
 // prettier-ignore
 let WETH_USDT_PAIR = "0x0000000000000000000000000000000000000000";
 // prettier-ignore
@@ -20,11 +20,11 @@ export function getETHPriceInUSD(): BigDecimal {
 
   // all 3 pairs have been created
   if (eusdPair !== null && usdcPair !== null && usdtPair !== null) {
-    let totalLiquidityBNB = eusdPair.reserve1.plus(usdcPair.reserve1).plus(usdtPair.reserve0);
-    if (totalLiquidityBNB.notEqual(ZERO_BD)) {
-      let eusdWeight = eusdPair.reserve1.div(totalLiquidityBNB);
-      let usdtWeight = usdtPair.reserve0.div(totalLiquidityBNB);
-      let usdcWeight = usdcPair.reserve1.div(totalLiquidityBNB);
+    let totalLiquidityETH = eusdPair.reserve1.plus(usdcPair.reserve1).plus(usdtPair.reserve0);
+    if (totalLiquidityETH.notEqual(ZERO_BD)) {
+      let eusdWeight = eusdPair.reserve1.div(totalLiquidityETH);
+      let usdtWeight = usdtPair.reserve0.div(totalLiquidityETH);
+      let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH);
       return eusdPair.token0Price
         .times(eusdWeight)
         .plus(usdcPair.token0Price.times(usdcWeight))

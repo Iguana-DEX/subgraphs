@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 description: IguanaDEX v2 AMM pools.
-repository: https://github.com/iguana-dex
+repository: https://github.com/iguana-dex/subgraphs
 schema:
   file: ./schema.graphql
 dataSources:
@@ -10,7 +10,7 @@ dataSources:
     source:
       address: "0x6981ad2272010a6EF341497D6c3d109F6B87f3D9"
       abi: Factory
-      startBlock: 1700000
+      startBlock: 700000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

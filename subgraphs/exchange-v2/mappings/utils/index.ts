@@ -5,9 +5,9 @@ import { ERC20NameBytes } from "../../generated/Factory/ERC20NameBytes";
 import { ERC20SymbolBytes } from "../../generated/Factory/ERC20SymbolBytes";
 import { Factory as FactoryContract } from "../../generated/templates/Pair/Factory";
 
-export let ADDRESS_ZERO = "0x0000000000000000000000000000000000000000";
+export const ADDRESS_ZERO = "0x0000000000000000000000000000000000000000";
 // prettier-ignore
-export let FACTORY_ADDRESS = "0x6981ad2272010a6EF341497D6c3d109F6B87f3D9";
+export const FACTORY_ADDRESS = "0x6981ad2272010a6EF341497D6c3d109F6B87f3D9";
 
 export let ZERO_BI = BigInt.fromI32(0);
 export let ONE_BI = BigInt.fromI32(1);

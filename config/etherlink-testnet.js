@@ -5,7 +5,7 @@ module.exports = {
   network: "etherlink-testnet",
   wNativeAddress: "0xB1Ea698633d57705e93b0E40c1077d46CD6A51d8",
   v3: {
-    // WXTZ-USDT 500
+    // WXTZ-EUSD 500
     wNativeStablePoolAddress: "",
     stableIsToken0: true,
     factoryAddress: "0x481e51E7c1c1E137d80051fFd373cbda71cfd5b7",
@@ -25,15 +25,15 @@ module.exports = {
       "0xB1Ea698633d57705e93b0E40c1077d46CD6A51d8", // IGN
     ],
     nonfungiblePositionManagerAddress: "0x8682Ce5E26Eb523b3F0E300387008DD8204FfA9C",
-    nonfungiblePositionManagerStartBlock: 200,
+    nonfungiblePositionManagerStartBlock: 1000000,
     minETHLocked: 0,
   },
   v2: {
     factoryAddress: "0x6981ad2272010a6EF341497D6c3d109F6B87f3D9",
-    startBlock: 1000000,
+    startBlock: 700000,
     wNativeStablePair0: "0x0000000000000000000000000000000000000000", // WETH-USDT
     wNativeStablePair1: "0x0000000000000000000000000000000000000000", // WETH-USDC
-    wNativeStablePair2: "0x9ab92635d4d949069023e7c541e5a272a0f07da1", // WETH-EUSD
+    wNativeStablePair2: "0x9aB92635D4D949069023e7C541e5A272A0F07Da1", // WETH-EUSD
     whitelistAddresses: [
       "0xB1Ea698633d57705e93b0E40c1077d46CD6A51d8", // WXTZ
       "0x1A71f491fb0Ef77F13F8f6d2a927dd4C969ECe4f", // eUSD
