@@ -90,6 +90,7 @@ The APIs created with The Graph are referred to as 'subgraphs' and IguanaDEX use
     - Scroll https://api.studio.thegraph.com/query/45376/exchange-v3-scroll/version/latest
     - Scroll Sepolia https://api.studio.thegraph.com/query/45376/exchange-v3-scroll-sepolia/version/latest
     - opBNB https://opbnb-mainnet-graph.nodereal.io/subgraphs/name/pancakeswap/exchange-v3
+    - Etherlink Testnet https://api.studio.thegraph.com/query/69431/exchange-v3-etherlink-test/1.0.0
 
 ## Dependencies
 

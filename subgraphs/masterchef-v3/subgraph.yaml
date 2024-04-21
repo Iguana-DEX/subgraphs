@@ -1,16 +1,16 @@
 specVersion: 0.0.3
 description: MasterChefV3
-repository: https://github.com/pancakeswap/pancakeswapswap-subgraph
+repository: https://github.com/iguana-dex/subgraphs
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: MasterChefV3
-    network: zksync-era
+    network: etherlink-testnet
     source:
-      address: "0x4c615e78c5fca1ad31e4d66eb0d8688d84307463"
+      address: "0xa481Be7D0740CA4cC127d3956D75d131d3a48C45"
       abi: MasterChefV3
-      startBlock: 8792225
+      startBlock: 1493555
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

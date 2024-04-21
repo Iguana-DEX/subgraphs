@@ -22,9 +22,6 @@
     "assemblyscript": "github:AssemblyScript/assemblyscript#3ed76a97f05335504166fce1653da75f4face28f"
   },
   "devDependencies": {
-    "mustache": "^4.2.0",
-    "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0",
     "@graphprotocol/graph-cli": "^0.21.0",
     "@graphprotocol/graph-ts": "^0.20.0",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
@@ -32,6 +29,7 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.0",
+    "mustache": "^4.2.0",
     "prettier": "^2.4.0",
     "turbo": "^1.7.4",
     "typescript": "^4.3.5"
