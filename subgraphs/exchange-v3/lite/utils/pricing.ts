@@ -5,21 +5,32 @@ import { BigDecimal, BigInt } from "@graphprotocol/graph-ts";
 import { exponentToBigDecimal, safeDiv } from "./index";
 
 // prettier-ignore
-const WETH_ADDRESS = "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c";
+const WETH_ADDRESS = "0x8DEF68408Bc96553003094180E5C90d9fe5b88C1";
 // prettier-ignore
-const USDC_WETH_03_POOL = "0x36696169c63e42cd08ce11f5deebbcebae652050";
+const USDC_WETH_03_POOL = "0x9644e26ef0ec0659e453dd8035d6b2a169eb65aa"; // WXTZ_eUSD pool
 
 const STABLE_IS_TOKEN0 = "true" as string;
 
 // token where amounts should contribute to tracked volume and liquidity
 // usually tokens that many tokens are paired with s
-// prettier-ignore
-export let WHITELIST_TOKENS: string[] = "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c,0x55d398326f99059ff775485246999027b3197955,0xe9e7cea3dedca5984780bafc599bd69add087d56,0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d,0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c,0x2170ed0880ac9a755fd29b2688956bd959f933f8,0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82".split(",");
 
-// prettier-ignore
-let STABLE_COINS: string[] = "0x55d398326f99059ff775485246999027b3197955,0xe9e7cea3dedca5984780bafc599bd69add087d56,0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d".split(",");
+export const WHITELIST_TOKENS: string[] = [
+  "0xB1Ea698633d57705e93b0E40c1077d46CD6A51d8", // WXTZ
+  "0x1A71f491fb0Ef77F13F8f6d2a927dd4C969ECe4f", // eUSD
+  "0xD21B917D2f4a4a8E3D12892160BFFd8f4cd72d4F", // USDT
+  "0xa7c9092A5D2C3663B7C5F714dbA806d02d62B58a", // USDC
+  "0x6bDE94725379334b469449f4CF49bCfc85ebFb27", // tzBTC
+  "0x8DEF68408Bc96553003094180E5C90d9fe5b88C1", // WETH
+  "0xB1Ea698633d57705e93b0E40c1077d46CD6A51d8", // IGN
+];
 
-let MINIMUM_ETH_LOCKED = BigDecimal.fromString("60");
+const STABLE_COINS: string[] = [
+  "0x1A71f491fb0Ef77F13F8f6d2a927dd4C969ECe4f", // eUSD
+  "0xD21B917D2f4a4a8E3D12892160BFFd8f4cd72d4F", // USDT
+  "0xa7c9092A5D2C3663B7C5F714dbA806d02d62B58a", // USDC
+];
+
+const MINIMUM_ETH_LOCKED = BigDecimal.fromString("60");
 
 let Q192 = 2 ** 192;
 export function sqrtPriceX96ToTokenPrices(sqrtPriceX96: BigInt, token0: Token, token1: Token): BigDecimal[] {

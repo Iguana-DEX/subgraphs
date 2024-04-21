@@ -1,15 +1,16 @@
 {
   "name": "exchange-v3-lite",
-  "description": "PancakeSwap Subgraph for Exchange V3 lite version",
+  "description": "Subgraph indexing v3 pools for IguanaDEX (Spot DEX product)",
   "version": "1.0.0",
-  "repository": "git@github.com:pancakeswap/pancake-subgraph.git",
-  "author": "PancakeSwap",
+  "repository": "git@github.com:iguana-dex/subgraphs.git",
+  "author": "Styliann",
   "license": "GPL-3.0-or-later",
   "scripts": {
     "template": "mustache ../../../config/$NETWORK.js subgraph.template.yaml > subgraph.yaml && mustache ../../../config/$NETWORK.js utils/constants.template.ts > utils/constants.ts && mustache ../../../config/$NETWORK.js utils/pricing.template.ts > utils/pricing.ts",
-    "auth": "graph auth --product hosted-service SUBGRAPH_KEY",
+    "auth": "graph auth --studio 4c465f26bd9d2f68226b6f05ae21f38d",
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
+    "deploy:etherlink-testnet": "graph deploy --studio exchange-v3-etherlink-test",
     "deploy": "graph deploy --product hosted-service --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ chef-jojo/exchange-v3-lite subgraph.yaml"
   }
 }
